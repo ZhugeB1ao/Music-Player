@@ -1,0 +1,116 @@
+html {
+  font-family: "Playwrite VN", serif;
+  font-weight: 100;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background-color: #282845;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  width: 390px;
+  height: 844px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 2px rgba(1, 1, 1, 0.7);
+  justify-self: center;
+  background: #1e1f34;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+#DVD-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 0 48px;
+}
+
+.dvd {
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  background-color: whitesmoke;
+  display: block;
+}
+
+.music-playing-content {
+  color: white;
+  margin-top: 64px;
+}
+
+.music-playing-content h2,
+.music-playing-content p {
+  text-align: center;
+  margin: 0;
+}
+
+.buttons {
+    margin-top: 5px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  color: white;
+}
+
+.circle {
+  width: 64px;
+  height: 64px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons i {
+  font-size: 28px;
+}
+
+.play-button {
+  font-size: 24px !important;
+  transform: translateX(3px);
+}
+
+.music-lists {
+  width: 100%;
+  height: auto;
+  padding: 0;
+}
+
+.music-list {
+  list-style-type: none;
+  background-color: #282845;
+  margin: 12px 8px;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.music-list-circle {
+  color: white;
+  width: 42px;
+  height: 42px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music-list-play-button {
+  font-size: 16px !important;
+  transform: translateX(3px);
+}
