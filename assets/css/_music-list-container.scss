@@ -1,0 +1,52 @@
+#music-list-container {
+    .music-lists {
+      width: 100%;
+      height: auto;
+      padding: 0;
+
+      .music-list {
+        list-style-type: none;
+        background-color: #282845;
+        margin: 12px 8px;
+        padding: 12px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .music-list-circle {
+          color: white;
+          width: 42px;
+          height: 42px;
+          background-color: transparent;
+          border: 2px solid white;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .music-list-play-button {
+            font-size: 16px !important;
+            transform: translateX(3px);
+          }
+        }
+
+        .music-content {
+          margin-right : 25%;
+          h4 {
+            margin: 0;
+          }
+          p {
+            margin: 0;
+            font-size: 12px;
+          }
+        }
+
+        .music-duration {
+          p {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }

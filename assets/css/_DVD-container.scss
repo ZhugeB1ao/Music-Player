@@ -1,0 +1,67 @@
+#DVD-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 0 48px;
+
+  .dvd {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    background-image: url("../image/image1.webp");
+    background-color: whitesmoke;
+    display: block;
+    transform: rotate(var(--start-angle, 0deg));
+  }
+
+  .music-playing-content {
+    color: white;
+    margin-top: 64px;
+
+    h2,
+    p {
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  .buttons {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    color: white;
+
+    i {
+      font-size: 28px;
+    }
+
+    .circle {
+      width: 64px;
+      height: 64px;
+      background-color: transparent;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .play-button {
+        font-size: 24px !important;
+        transform: translateX(1px);
+      }
+    }
+  }
+
+  #audio-player {
+  }
+
+  #progress-bar {
+    margin-top: 12px;
+    width: 80%;
+  }
+}

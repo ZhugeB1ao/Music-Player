@@ -14,57 +14,49 @@
 
 <body>
     <section>
-        <div id="main-content">
-            <div id="DVD-container">
-                <div class="dvd">
 
+        <div id="DVD-container">
+            <div class="dvd rotate">
+                
+            </div>
+
+            <div class="music-playing-content">
+                <h2>Từng ngày yêu em</h2>
+                <p>Bùi Trường Linh</p>
+            </div>
+
+            <div class="buttons">
+                <i class="fa-solid fa-shuffle"></i>
+                <i class="fa-solid fa-backward"></i>
+                <div class="circle">
+                    <i class="fa-solid fa-play play-button"></i>
                 </div>
+                <i class="fa-solid fa-forward"></i>
+                <i class="fa-solid fa-repeat"></i>
+            </div>
 
-                <div class="music-playing-content">
-                    <h2>My music</h2>
-                    <p>Author</p>
-                </div>
+            <audio id="audio-player">
+                <source src="assets/music/song1.mp3" type="audio/mpeg">
+                Trình duyệt của bạn không hỗ trợ âm thanh.
+            </audio>
+            <input type="range" value="0" step="1" min="0" id="progress-bar">
+        </div>
 
-                <div class="buttons">
-                    <i class="fa-solid fa-shuffle"></i>
-                    <i class="fa-solid fa-backward"></i>
-                    <div class="circle">
-                        <i class="fa-solid fa-play play-button"></i>
+        <div id="music-list-container">
+            <ul class="music-lists">
+                <li class="music-list">
+                    <div class="music-list-circle">
+                        <i class="fa-solid fa-play music-list-play-button"></i>
                     </div>
-                    <i class="fa-solid fa-forward"></i>
-                    <i class="fa-solid fa-repeat"></i>
-                </div>
-            </div>
-
-            <div id="music-list-container">
-                <ul class="music-lists">
-                    <li class="music-list">
-                        <div class="music-list-circle">
-                            <i class="fa-solid fa-play music-list-play-button"></i>
-                        </div>
-                    </li><li class="music-list">
-                        <div class="music-list-circle">
-                            <i class="fa-solid fa-play music-list-play-button"></i>
-                        </div>
-                    </li><li class="music-list">
-                        <div class="music-list-circle">
-                            <i class="fa-solid fa-play music-list-play-button"></i>
-                        </div>
-                    </li><li class="music-list">
-                        <div class="music-list-circle">
-                            <i class="fa-solid fa-play music-list-play-button"></i>
-                        </div>
-                    </li><li class="music-list">
-                        <div class="music-list-circle">
-                            <i class="fa-solid fa-play music-list-play-button"></i>
-                        </div>
-                    </li><li class="music-list">
-                        <div class="music-list-circle">
-                            <i class="fa-solid fa-play music-list-play-button"></i>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                    <div class="music-content">
+                        <h4>Từng ngày yêu em</h4>
+                        <p>Bùi Trường Linh</p>
+                    </div>
+                    <div class="music-duration">
+                        <p>4:17</p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
     </section>
