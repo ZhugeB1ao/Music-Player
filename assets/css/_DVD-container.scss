@@ -1,25 +1,19 @@
 #DVD-container {
-  width: 100%;
+  width: inherit;
+  max-width: 80%;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 48px 0 48px;
-
-  .dvd {
-    width: 300px;
-    height: 300px;
-    border-radius: 100%;
-    background-image: url("../image/image1.webp");
-    background-color: whitesmoke;
-    display: block;
-    transform: rotate(var(--start-angle, 0deg));
-  }
+  padding: 36px 0 36px;
+  position: fixed;
+  background-color: inherit;
+  z-index: 1;
 
   .music-playing-content {
-    color: white;
-    margin-top: 64px;
+    color: whitesmoke;
+    margin-bottom: 24px;
 
     h2,
     p {
@@ -28,16 +22,32 @@
     }
   }
 
+  .dvd-content {
+    width: 300px;
+    .dvd {
+      padding-top: 100%;
+      border-radius: 100%;
+      background: whitesmoke no-repeat center/cover;
+    }
+  }
+
   .buttons {
-    margin-top: 5px;
+    margin-top: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 24px;
-    color: white;
+    color: whitesmoke;
+    cursor: pointer;
 
     i {
       font-size: 28px;
+    }
+
+    i:hover {
+      transition: 0.2s;
+      transform: scale(1.05);
+      opacity: 0.9;
     }
 
     .circle {
@@ -51,17 +61,27 @@
       align-items: center;
 
       .play-button {
-        font-size: 24px !important;
+        font-size: 24px;
         transform: translateX(1px);
       }
-    }
-  }
 
-  #audio-player {
+      .pause-button {
+        font-size: 24px;
+        display: none;
+      }
+    }
+
+    .circle:hover {
+      transition: 0.2s;
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
   }
 
   #progress-bar {
     margin-top: 12px;
     width: 80%;
   }
+
+  @import "progress-bar";
 }

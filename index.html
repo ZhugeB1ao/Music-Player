@@ -9,53 +9,45 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+VN:wght@100..400&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Music player</title>
 </head>
 
 <body>
     <section>
 
         <div id="DVD-container">
-            <div class="dvd rotate">
-                
+            <div class="music-playing-content">
+                <h2>Music</h2>
+                <p>Singer</p>
             </div>
 
-            <div class="music-playing-content">
-                <h2>Từng ngày yêu em</h2>
-                <p>Bùi Trường Linh</p>
+            <div class="dvd-content">
+                <div class="dvd">
+
+                </div>
             </div>
 
             <div class="buttons">
                 <i class="fa-solid fa-shuffle"></i>
-                <i class="fa-solid fa-backward"></i>
+                <i class="fa-solid fa-backward prev-button"></i>
                 <div class="circle">
                     <i class="fa-solid fa-play play-button"></i>
+                    <i class="fa-solid fa-pause pause-button"></i>
                 </div>
-                <i class="fa-solid fa-forward"></i>
+                <i class="fa-solid fa-forward next-button"></i>
                 <i class="fa-solid fa-repeat"></i>
             </div>
 
-            <audio id="audio-player">
-                <source src="assets/music/song1.mp3" type="audio/mpeg">
-                Trình duyệt của bạn không hỗ trợ âm thanh.
+            <input type="range" value="0" step="1" min="0" max="100" id="progress-bar">
+
+            <audio id="audio-player" src="">
+
             </audio>
-            <input type="range" value="0" step="1" min="0" id="progress-bar">
         </div>
 
         <div id="music-list-container">
             <ul class="music-lists">
-                <li class="music-list">
-                    <div class="music-list-circle">
-                        <i class="fa-solid fa-play music-list-play-button"></i>
-                    </div>
-                    <div class="music-content">
-                        <h4>Từng ngày yêu em</h4>
-                        <p>Bùi Trường Linh</p>
-                    </div>
-                    <div class="music-duration">
-                        <p>4:17</p>
-                    </div>
-                </li>
+
             </ul>
         </div>
 
