@@ -77,6 +77,7 @@ const chooseMusic = () => {
   musicLists.forEach((musicList, index) => {
     musicList.addEventListener("click", () => {
       loadCurrentSong(index);
+      pausing();
     });
   });
 };
