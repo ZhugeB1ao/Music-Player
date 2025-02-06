@@ -49,6 +49,9 @@ html body section #DVD-container .music-playing-content p {
   text-align: center;
   margin: 0;
 }
+html body section #DVD-container .music-playing-content p {
+  color: violet;
+}
 html body section #DVD-container .dvd-content {
   width: 300px;
 }
@@ -58,7 +61,7 @@ html body section #DVD-container .dvd-content .dvd {
   background: whitesmoke no-repeat center/cover;
 }
 html body section #DVD-container .buttons {
-  margin-top: 12px;
+  margin-top: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,12 +76,14 @@ html body section #DVD-container .buttons i:hover {
   transition: 0.2s;
   transform: scale(1.05);
   opacity: 0.9;
+  color: violet !important;
+  transition: 0.2s !important;
 }
 html body section #DVD-container .buttons .circle {
   width: 64px;
   height: 64px;
   background-color: transparent;
-  border: 2px solid white;
+  border: 2px solid whitesmoke;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -96,6 +101,9 @@ html body section #DVD-container .buttons .circle:hover {
   transition: 0.2s;
   transform: scale(1.05);
   opacity: 0.9;
+  border: 2px solid violet;
+  color: violet;
+  transition: 0.2s;
 }
 html body section #DVD-container #progress-bar {
   margin-top: 12px;
@@ -114,12 +122,12 @@ html body section #DVD-container input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 16px;
   height: 16px;
-  background: gray;
+  background: violet;
   border-radius: 50%;
   cursor: pointer;
 }
 html body section #DVD-container input[type=range]::-moz-range-progress {
-  background: gray;
+  background: violet;
 }
 html body section #music-list-container {
   margin-top: 645px;
@@ -128,6 +136,13 @@ html body section #music-list-container .music-lists {
   width: 100%;
   height: auto;
   padding: 0;
+}
+html body section #music-list-container .music-lists .is-playing {
+  color: violet;
+  opacity: 1 !important;
+}
+html body section #music-list-container .music-lists .is-playing h4 {
+  color: whitesmoke;
 }
 html body section #music-list-container .music-lists .music-list {
   list-style-type: none;
@@ -138,6 +153,7 @@ html body section #music-list-container .music-lists .music-list {
   display: flex;
   gap: 20px;
   align-items: center;
+  opacity: 0.5;
 }
 html body section #music-list-container .music-lists .music-list .circle {
   width: 42px;
@@ -156,5 +172,11 @@ html body section #music-list-container .music-lists .music-list .music-duration
   margin: 0 10px 0 auto;
 }
 html body section #music-list-container .music-lists .music-list .music-duration p {
-  font-size: 10px;
+  font-size: 9px;
+}
+html body section #music-list-container .music-lists .music-list:hover:not(.circle):not(.music-content):not(.music-duration) {
+  transition: 0.1s;
+  transform: scale(1.01);
+  cursor: pointer;
+  opacity: 0.7;
 }/*# sourceMappingURL=style.css.map */

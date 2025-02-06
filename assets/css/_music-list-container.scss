@@ -5,6 +5,15 @@
     height: auto;
     padding: 0;
 
+    .is-playing {
+      color: violet;
+      opacity: 1!important;
+
+      h4 {
+        color: whitesmoke;
+      }
+    }
+
     .music-list {
       list-style-type: none;
       background-color: #282845;
@@ -14,8 +23,8 @@
       display: flex;
       gap: 20px;
       align-items: center;
-
-
+      opacity: 0.5;
+      
       .circle {
         width: 42px;
         height: 42px;
@@ -36,9 +45,16 @@
       .music-duration {
         margin: 0 10px 0 auto;
         p {
-          font-size: 10px;
+          font-size: 9px;
         }
       }
+    }
+
+    .music-list:hover:not(.circle):not(.music-content):not(.music-duration) {
+      transition: 0.1s;
+      transform: scale(1.01);
+      cursor: pointer;
+      opacity: 0.7;
     }
   }
 }

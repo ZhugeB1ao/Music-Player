@@ -13,13 +13,13 @@ input[type="range"] {
     -webkit-appearance: none;
     width: 16px;
     height: 16px;
-    background: gray;
+    background: violet;
     border-radius: 50%;
     cursor: pointer;
   }
   
   /* Firefox */
   input[type="range"]::-moz-range-progress {
-    background: gray;
+    background: violet;
   }
   

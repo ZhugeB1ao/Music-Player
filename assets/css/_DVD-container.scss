@@ -20,6 +20,10 @@
       text-align: center;
       margin: 0;
     }
+
+    p {
+      color: violet;
+    }
   }
 
   .dvd-content {
@@ -32,7 +36,7 @@
   }
 
   .buttons {
-    margin-top: 12px;
+    margin-top: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,13 +52,15 @@
       transition: 0.2s;
       transform: scale(1.05);
       opacity: 0.9;
+      color: violet !important;
+      transition: 0.2s !important;
     }
 
     .circle {
       width: 64px;
       height: 64px;
       background-color: transparent;
-      border: 2px solid white;
+      border: 2px solid whitesmoke;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -75,6 +81,9 @@
       transition: 0.2s;
       transform: scale(1.05);
       opacity: 0.9;
+      border: 2px solid violet;
+      color: violet;
+      transition: 0.2s ;
     }
   }
 
@@ -85,3 +94,4 @@
 
   @import "progress-bar";
 }
+

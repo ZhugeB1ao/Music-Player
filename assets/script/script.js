@@ -46,7 +46,7 @@ var musics = [
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-let firstSongIndex = 0;
+let currentSongIndex = 0;
 
 const progressBar = document.getElementById("progress-bar");
 const music = $(".music-playing-content h2");
@@ -58,10 +58,33 @@ const toggleBtn = $(".circle");
 const playBtn = $(".circle .play-button");
 const pauseBtn = $(".circle .pause-button");
 
+const shuffleBtn = $(".shuffle-button");
+let isShuffle = false;
+const repeatBtn = $(".repeat-button");
+let isRepeat = false;
+
+const musicListIsPlaying = () => {
+  const musicLists = $$(".music-list");
+
+  musicLists.forEach((musicList, index) => {
+    musicList.classList.toggle("is-playing", index === currentSongIndex);
+  });
+};
+
+const chooseMusic = () => {
+  const musicLists = $$(".music-list");
+
+  musicLists.forEach((musicList, index) => {
+    musicList.addEventListener("click", () => {
+      loadCurrentSong(index);
+    });
+  });
+};
+
 const renderMusic = () => {
   const html = $(".music-lists");
 
-  return (html.innerHTML = musics.reduce((acc, music) => {
+  html.innerHTML = musics.reduce((acc, music) => {
     return (
       acc +
       `<li class="music-list">
@@ -76,15 +99,12 @@ const renderMusic = () => {
             </div>
         </li>`
     );
-  }, ""));
-};
+  }, "");
 
-// const loadFirstSong = () => {
-//   music.innerText = musics[firstSongIndex].name;
-//   singer.innerText = musics[firstSongIndex].singer;
-//   dvd.style.background = `url('${musics[firstSongIndex].image}') no-repeat center/cover`;
-//   audio.src = `${musics[firstSongIndex].song}`;
-// };
+  musicListIsPlaying();
+  chooseMusic();
+  return html;
+};
 
 const progressBarHandle = () => {
   audio.addEventListener("loadedmetadata", () => {
@@ -94,7 +114,7 @@ const progressBarHandle = () => {
   audio.addEventListener("timeupdate", () => {
     progressBar.value = audio.currentTime;
     let percentage = (audio.currentTime / audio.duration) * 100;
-    progressBar.style.background = `linear-gradient(to right, grey ${percentage}%, whitesmoke ${percentage}%)`;
+    progressBar.style.background = `linear-gradient(to right, violet ${percentage}%, whitesmoke ${percentage}%)`;
   });
 
   progressBar.addEventListener("input", () => {
@@ -125,23 +145,38 @@ const dvdRotate = () => {
 
 const animation = dvdRotate();
 
+let isPlaying = false;
+
 const playing = () => {
+  isPlaying = false;
   playBtn.style.display = "block";
   pauseBtn.style.display = "none";
-  audio.pause();
 
+  pauseBtn.style.color = "whitesmoke";
+  toggleBtn.style.border = "2px solid whitesmoke";
+
+  audio.pause();
   animation.pause();
 };
 
 const pausing = () => {
   pauseBtn.style.display = "block";
   playBtn.style.display = "none";
+
   audio.play();
 
   setTimeout(() => {
     animation.play();
   }, 500);
 };
+
+// Playing next song
+audio.addEventListener("ended", () => {
+  if (isRepeat == false && isShuffle == false) {
+    loadCurrentSong(++currentSongIndex);
+    audio.play();
+  }
+});
 
 const playPauseHandle = () => {
   animation.pause();
@@ -154,46 +189,139 @@ const playPauseHandle = () => {
       playBtn.style.display = "none";
       audio.play();
       animation.play();
+      isPlaying = true;
+
+      playBtn.style.color = "whitesmoke";
+      pauseBtn.style.color = "violet";
+      toggleBtn.style.border = "2px solid violet";
     }
   });
 };
 
 const loadCurrentSong = (i) => {
+  progressBar.style.background = "whitesmoke";
+  currentSongIndex = i;
   music.innerText = musics[i].name;
   singer.innerText = musics[i].singer;
   dvd.style.background = `url('${musics[i].image}') no-repeat center/cover`;
   audio.src = `${musics[i].song}`;
+
+  musicListIsPlaying();
 };
-console.log(musics.length);
 
 const nextSong = () => {
   const nextBtn = $(".next-button");
   nextBtn.addEventListener("click", () => {
-    if (firstSongIndex < musics.length - 1) {
-      loadCurrentSong(++firstSongIndex);
-      animation.cancel();
-      pausing();
+    if (currentSongIndex < musics.length - 1) {
+      loadCurrentSong(++currentSongIndex);
     } else {
-      firstSongIndex = 0;
-      loadCurrentSong(firstSongIndex);
-      animation.cancel();
-      pausing();
+      currentSongIndex = 0;
+      loadCurrentSong(currentSongIndex);
     }
+    animation.cancel();
+    pausing();
   });
 };
 
 const prevSong = () => {
   const prevBtn = $(".prev-button");
   prevBtn.addEventListener("click", () => {
-    if (firstSongIndex > 0) {
-      loadCurrentSong(--firstSongIndex);
-      animation.cancel();
-      pausing();
+    if (currentSongIndex > 0) {
+      loadCurrentSong(--currentSongIndex);
     } else {
-      firstSongIndex = musics.length - 1;
-      loadCurrentSong(firstSongIndex);
-      animation.cancel();
+      currentSongIndex = musics.length - 1;
+      loadCurrentSong(currentSongIndex);
+    }
+    animation.cancel();
       pausing();
+  });
+};
+
+const getRandomNumberExpectCurrent = () => {
+  if (musics.length <= 1) {
+    return currentSongIndex;
+  }
+
+  let randomNumber;
+  do {
+    randomNumber = Math.floor(Math.random() * musics.length);
+  } while (randomNumber === currentSongIndex);
+
+  return randomNumber;
+};
+
+let shuffleEndedHandler = null;
+
+const shuffling = () => {
+  if (shuffleEndedHandler) {
+    audio.removeEventListener("ended", shuffleEndedHandler);
+  }
+
+  shuffleEndedHandler = () => {
+    const newIndex = getRandomNumberExpectCurrent();
+    currentSongIndex = newIndex;
+    loadCurrentSong(newIndex);
+    audio.currentTime = 0;
+    audio.play();
+  };
+
+  audio.addEventListener("ended", shuffleEndedHandler);
+};
+
+const shuffleHandle = () => {
+  shuffleBtn.addEventListener("click", () => {
+    if (isShuffle) {
+      isShuffle = false;
+      shuffleBtn.style.color = "whitesmoke";
+      if (shuffleEndedHandler) {
+        audio.removeEventListener("ended", shuffleEndedHandler);
+        shuffleEndedHandler = null;
+      }
+    } else {
+      if (isRepeat) {
+        isRepeat = false;
+        repeatBtn.style.color = "whitesmoke";
+        audio.removeEventListener("ended", repeatEndedHandler);
+      }
+      isShuffle = true;
+      shuffleBtn.style.color = "violet";
+      shuffling();
+    }
+  });
+};
+
+let repeatEndedHandler = null;
+
+const repeating = () => {
+  if (repeatEndedHandler) {
+    audio.removeEventListener("ended", repeatEndedHandler);
+  }
+
+  repeatEndedHandler = () => {
+    audio.currentTime = 0;
+    audio.play();
+  };
+  audio.addEventListener("ended", repeatEndedHandler);
+};
+
+const repeatHandle = () => {
+  repeatBtn.addEventListener("click", () => {
+    if (isRepeat) {
+      isRepeat = false;
+      repeatBtn.style.color = "whitesmoke";
+      if (repeatEndedHandler) {
+        audio.removeEventListener("ended", repeatEndedHandler);
+        repeatEndedHandler = null;
+      }
+    } else {
+      if (isShuffle) {
+        isShuffle = false;
+        shuffleBtn.style.color = "whitesmoke";
+        audio.removeEventListener("ended", shuffleEndedHandler);
+      }
+      isRepeat = true;
+      repeatBtn.style.color = "violet";
+      repeating();
     }
   });
 };
@@ -202,11 +330,13 @@ const btnHandle = () => {
   playPauseHandle();
   nextSong();
   prevSong();
+  shuffleHandle();
+  repeatHandle();
 };
 
 const start = () => {
   renderMusic();
-  loadCurrentSong(firstSongIndex);
+  loadCurrentSong(currentSongIndex);
   progressBarHandle();
   scrollHandle();
   btnHandle();
